@@ -13,5 +13,12 @@ namespace Lab08_Collections
         public string Author { get; set; }
 
         public int NumberOfPages { get; set; }
+
+        public Book(string title, string auther, int numberOfPages)
+        {
+            this.Title = title;
+            this.Author = auther;
+            this.NumberOfPages = numberOfPages;
+        }
     }
 }

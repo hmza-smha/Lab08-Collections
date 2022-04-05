@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab08_Collections
 {
-    public class Library : ILibrary
+    public class Library<T> : ILibrary
     {
 
         public int Count { get; set; }
@@ -20,7 +20,7 @@ namespace Lab08_Collections
 
         public void Add(string title, string firstName, string lastName, int numberOfPages)
         {
-            Book book = new Book();
+            Book book = new Book(title, firstName + " " + lastName, numberOfPages);
             book.Title = title;
             book.Author = firstName + " " + lastName;
             book.NumberOfPages = numberOfPages;
@@ -53,7 +53,10 @@ namespace Lab08_Collections
 
         public IEnumerator<Book> GetEnumerator()
         {
-            return _books.Values.GetEnumerator();
+            foreach (Book item in _books.Values)
+            {
+                yield return item;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
